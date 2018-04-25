@@ -1,0 +1,78 @@
+Yii Notes:
+
+Yii is a PHP framework, developed to be flexible and to work right out of the box.
+
+It can be installed into a directory using composer, and it is possible to, once you've installed all of the dependencies (took me a while), you can have a demo project up and running in minutes.
+
+mkdir demo
+cd demo
+
+composer create-project --prefer-dist yiisoft/yii2-app-basic basic
+php yii serve --port=8888
+
+http://localhost:8888/
+
+
+Configuring Web Servers, something I'm not going to get into right now, can run out of the box with Apache and Nginx HTTP Servers as well as Facebook's HHVM.
+
+To the application:
+Yii Implements the MVC architectual pattern, something we should all be familiar with by now. 
+
+
+ACTIONS AND VIEWS
+
+Creating an Action:
+Yii: "Actions are the objects that end users can directly refer to for execution. Actions are grouped by controllers. The execution result of an action is the response that an end user will receive."
+
+Following the Yii docs, I created an action called actionSay in the 
+controllers/SiteController.php file. 
+This action takes in an argument from the URL and displays it on the webpage
+The render method here is going to render a view file named say in the Site directory. 
+The method render looks for a PHP file named as views/ControllerID/ViewName.php.
+
+
+I can try this action out by typing 
+http:/localhost:8888/index.php?r=site%2Fsay&message=Hello+World
+
+
+DATABASE CONNECTION
+
+Connecting to a database
+Show database in mysql;
+
+setup params in config/db.php
+
+create an active record-derived class country class in models/Country.php
+
+create a view in view/country/index.php
+
+show in http://localhost:8888/index.php?r=country%2Findex
+
+Page showing five countries- pagination and the linkpager widgets. linkpager renders the page buttons using the urls created by pagination.
+
+Pretty simple framework so far, but the coolest part of Yii, at least in my opinion, is this thing called Gii.
+
+GII
+
+Gii is a module used to automatically generate code. Code is entered using the instructions on the Gii web pages.
+
+Gii needs to be enabled in the modules property of the application (config/web.php)
+(check near the bottom if the modules gii is there referencing the yii/gii/Module class)
+
+show country model in models/Country.php
+create model Country and generate (preview doesn't work)
+show new country model in models/Country.php
+
+generate CRUD
+For the "country" example, fill out the resulting form as follows:
+
+    Model Class: app\models\Country
+    Search Model Class: app\models\CountrySearch
+    Controller Class: app\controllers\CountryController
+
+http://localhost:8888/index.php?r=country%2Findex
+
+
+
+
+
